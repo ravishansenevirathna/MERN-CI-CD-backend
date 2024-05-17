@@ -37,4 +37,4 @@ const server = app.listen(PORT, () => {
 
 const studentRouter = require('./routes/StudentsRoutes');
 
-app.use("/student",studentRouter);
+app.use("/api/student",studentRouter);
