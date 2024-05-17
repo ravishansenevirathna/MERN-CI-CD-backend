@@ -28,6 +28,7 @@ router.route("/add").post((req,res) =>{
 router.route("/getAll").get((req,res) =>{
 
     Student.find().then((allStudents) => {
+        console.log("hi");
 
         res.json(allStudents);
 
