@@ -2,10 +2,12 @@ const locationService = require('../services/LocationService');
 
 class LocationController {
   async createLocation(req, res) {
+    console.log("createLocation");
     try {
       const location = await locationService.createLocation(req.body);
       res.status(201).json(location);
     } catch (error) {
+      console.log("error");
       res.status(400).json({ error: error.message });
     }
   }

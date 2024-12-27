@@ -1,11 +1,11 @@
 const express = require("express");
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const dotenv = require('dotenv');
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
 const app = express();
-require('dotenv').config();
-
+dotenv.config();
+const locationRoutes = require("./routes");
 
 const PORT = process.env.PORT || 8070;
 
@@ -14,22 +14,20 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
-const connect = async () =>{
-    try{
-        await mongoose.connect(URL);
-        console.log('Connected to mongodb')
-    }
-    catch(error){
-        console.log('mongodb error is :', error);
+// Use the routes
+app.use("/", locationRoutes); // Mount the routes at the root level
 
+const connect = async () => {
+    try {
+        await mongoose.connect(URL);
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("MongoDB connection error:", error);
     }
 };
 
 connect();
 
-
-
-
-const server = app.listen(PORT, () => {
-    console.log(`node server is listening to port number :  ${PORT}`)
-})
+app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
+});
