@@ -7,7 +7,7 @@ const app = express();
 require('dotenv').config();
 
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8070;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -33,8 +33,3 @@ connect();
 const server = app.listen(PORT, () => {
     console.log(`node server is listening to port number :  ${PORT}`)
 })
-
-
-const studentRouter = require('./routes/StudentsRoutes');
-
-app.use("/api/student",studentRouter);
