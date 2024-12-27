@@ -11,6 +11,16 @@ class UserController {
     }
   }
 
+  async signIn(req, res) {
+    try {
+      const { identifier, password } = req.body;
+      const result = await userService.login(identifier, password);
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+
 }
 
 module.exports = new UserController();

@@ -13,5 +13,6 @@ router.get('/locations/nearby', locationController.findNearbyLocations);
 router.get('/locations/search', locationController.searchLocations);
 
 router.post('/signIn', userController.signIn);
+router.post('/login', userController.signIn);
 
 module.exports = router;

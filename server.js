@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
-// Use the routes
 app.use("/", locationRoutes);
 
 const connect = async () => {

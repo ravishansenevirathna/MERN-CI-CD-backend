@@ -5,6 +5,12 @@ class UserRepository {
       const user = new User(userData);
       return await user.save();
     }
+
+    async findByEmailOrUsername(identifier) {
+        return await User.findOne({
+          $or: [{ email: identifier }, { name: identifier }],
+        });
+      }
   
   }
   
