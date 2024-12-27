@@ -1,5 +1,6 @@
 const express = require('express');
 const locationController = require('./controllers/LocationController');
+const userController = require('./controllers/UserController');
 
 const router = express.Router();
 
@@ -10,5 +11,7 @@ router.put('/locations/:id', locationController.updateLocation);
 router.delete('/locations/:id', locationController.deleteLocation);
 router.get('/locations/nearby', locationController.findNearbyLocations);
 router.get('/locations/search', locationController.searchLocations);
+
+router.post('/signIn', userController.signIn);
 
 module.exports = router;

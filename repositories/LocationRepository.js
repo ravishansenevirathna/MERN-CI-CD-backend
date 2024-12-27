@@ -1,7 +1,5 @@
 const Location = require('../models/Location');
 
-
-
 class LocationRepository {
     async create(locationData) {
       const location = new Location(locationData);

@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 const URL = process.env.MONGODB_URL;
 
 // Use the routes
-app.use("/", locationRoutes); // Mount the routes at the root level
+app.use("/", locationRoutes);
 
 const connect = async () => {
     try {
