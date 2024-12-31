@@ -5,7 +5,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
 dotenv.config();
-const locationRoutes = require("./routes");
+const routes = require('./routes');
 
 const PORT = process.env.PORT || 8070;
 
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
-app.use("/", locationRoutes);
+app.use("/api", routes);
 
 const connect = async () => {
     try {
