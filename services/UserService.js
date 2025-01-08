@@ -5,42 +5,43 @@ const jwt = require('jsonwebtoken');
 const jwtConfiguration = require('../utils/jwt');
 
 class UserService {
+
     async signIn(data) {
       const userData = new UserDto(data);
       const user = await userRepository.create(userData);
       return new UserDto(user);
     }
 
-    async login(identifier, password) {
-        const user = await userRepository.findByEmailOrUsername(identifier);
-    
+    async login(data) {
+        const { email, password } = data;
+
+        const user = await userRepository.findByEmailOrUsername(email);
+
         if (!user) {
-          throw new Error('User not found');
+            throw new Error('User not found');
         }
-    
-        
+
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-          throw new Error('Invalid credentials');
+            throw new Error('Invalid credentials');
         }
-    
+
         const token = jwt.sign(
-          { id: user._id, email: user.email, role: user.role },
-          jwtConfiguration.JWT_SECRET,
-          { expiresIn: '1h' }
+            { id: user._id, email: user.email, role: user.role },
+            jwtConfiguration.JWT_SECRET,
+            { expiresIn: '1h' }
         );
-    
-        
+
         return {
-          token,
-          user: {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-          },
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+            },
         };
-      }
+    }
   
   }
   

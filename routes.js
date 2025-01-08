@@ -22,6 +22,6 @@ router.put('/hotels/:id', jwtMiddleware,hotelController.updateHotel);
 router.delete('/hotels/:id', jwtMiddleware,hotelController.deleteHotel);
 
 router.post('/signIn', userController.signIn);
-router.post('/login', userController.signIn);
+router.post('/login', userController.logIn);
 
 module.exports = router;
